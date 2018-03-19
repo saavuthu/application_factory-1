@@ -2,6 +2,8 @@
 # Playbook for NTP Application
 - name: NTP Application setup
   hosts: all
+  remote_user: cloud
+  become: true
 
 # Tasks for NTP Application
   tasks:

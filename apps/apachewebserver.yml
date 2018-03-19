@@ -1,6 +1,8 @@
 ---
 - name: Apache webserver deployment
   hosts: all
+  remote_user: cloud
+  become: true
 
   tasks:
   - name: Installing Apache packages
