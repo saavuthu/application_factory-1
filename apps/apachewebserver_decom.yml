@@ -1,0 +1,16 @@
+---
+- name: Apache webserver Decommissioning
+  hosts: all
+  remote_user: cloud
+  become: true
+
+  tasks:
+  - name: Starting Apache webservice
+    service: name=httpd state=stopped
+
+  - name: Removing Apache packages
+    yum: name=httpd state=absent
+
+  - name: Remove configuration files
+    file: path=/var/www/html/index.html state=absent
+

@@ -1,0 +1,14 @@
+---
+# Playbook for NTP Application Uninstallatiom
+- name: NTP Application Uninstallation
+  hosts: all
+  remote_user: cloud
+  become: true
+
+# Tasks for NTP Application
+  tasks:
+    - name: NTP Package Removal
+      yum: name=ntp state=absent
+
+    - name: NTP File
+      file: path=/etc/ntp.conf state=absent
