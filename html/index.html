@@ -1,9 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Demo</title>
+
+	<title>Self Service Portal</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
-<h1>Demo</h1>
+<h1>Bundle (OS & Application) Orchestration via Self Service Portal</h1>
+<select id="host_ip" name="host_ip" >
+</select>
+<br>
+<select id="application_name" name="application_name" >
+</select>
+
+<button>Run Job</button> <br>
+<div id="resultdiv"></div>
+<script type="text/javascript">
+	
+$(document).ready(function(){
+    
+    $.get("/inventory", function(data, status){
+    	$.each(data, function(i, value) {
+            $('#host_ip').append($('<option>').text(value).attr('value', value));
+        });
+        console.log(data);
+    });
+
+    $.get("/applications", function(data, status){
+    	$.each(data, function(i, value) {
+            $('#application_name').append($('<option>').text(value).attr('value', value));
+        });
+        console.log(data);
+    });
+
+    $("button").click(function(){
+    	img_url = "https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif";
+    	$('#resultdiv').html('<img src="' + img_url + '"/>');
+
+    	var objData = {};
+        objData.host_ip = $.trim($('#host_ip').val());
+        objData.app = $.trim($('#application_name').val());
+
+    	jQuery.ajax({ 
+                async: true,
+                type: 'post',                
+                url: "/ansible/",
+                data: JSON.stringify(objData),       
+                contentType: "application/json; charset=utf-8",
+            	dataType: "json",
+                timeout:150000,
+                success: function(data1) 
+                {
+                    console.log(data1);
+	    			$('#resultdiv').html("<pre>" + data1.result + "</pre>");
+                },
+                error: function(data1){
+                    console.log(data1);
+                    $('#resultdiv').html('Error: ' + data1);
+                }
+        });
+
+	}); 
+});
+
+</script>
 </body>
 </html>
