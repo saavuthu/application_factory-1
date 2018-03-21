@@ -71,7 +71,7 @@
 </div>
 </div>
 </div>
-<div class="col-8" id="resultdiv">
+<div class="col-8"  >
 	<div class="progress" style="height: 50px;" id="progress-bar-on">
   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Running Job</div>
 </div>
@@ -115,7 +115,7 @@
 	
 $(document).ready(function(){
     $("#progress-bar-on").hide();
-    $("#resultdiv").hide();
+    $('#codediv').hide();
 
     $.get("/inventory", function(data, status){
     	$.each(data, function(i, value) {
@@ -136,7 +136,7 @@ $(document).ready(function(){
 
     $("#btn-run-job").click(function(){
     	$("#progress-bar-on").show();
-    	$("#resultdiv").hide();
+    	 
 
     	var objData = {};
         objData.host_ip = $.trim($('#host_ip').val());
@@ -155,7 +155,7 @@ $(document).ready(function(){
                     console.log(data1);
                     $("#progress-bar-on").hide();
                     $('#codediv').show();
-                    $('#codediv').show();
+                   
 	    			$('#output_text').html(data1.result);
                 },
                 error: function(data1){
