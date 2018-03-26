@@ -15,7 +15,8 @@ class HomePage(object):
 
 class Invenotry(object):
     def on_get(self, req, resp):
-        data = os.listdir('inventory') 
+        data = os.listdir('inventory')
+        data.sort() 
         resp.media = data 
 
 class Applications(object):
@@ -26,8 +27,11 @@ class Applications(object):
 
     def on_get(self, req, resp):
         data = os.listdir('apps')
+        data.sort()
         rdata = []
         for names in data:
+            if 'refresh.yml' == names.lower():
+                continue  
             if names.endswith(".yml"):
                 rdata.append([names,self.set_title(names)])
         resp.media = rdata 
