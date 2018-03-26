@@ -127,7 +127,7 @@ $(document).ready(function(){
 
     $.get("/applications", function(data, status){
     	$.each(data, function(i, value) {
-            $('#application_name').append($('<option>').text(value).attr('value', value));
+            $('#application_name').append($('<option>').text(value[1]).attr('value', value[0]));
         });
         console.log(data);
     });

@@ -19,9 +19,18 @@ class Invenotry(object):
         resp.media = data 
 
 class Applications(object):
+    def set_title(self, fname):
+        fname = fname.replace(".yml", "")
+        fname = fname.replace("_", " ")
+        return fname 
+
     def on_get(self, req, resp):
         data = os.listdir('apps')
-        resp.media = data 
+        rdata = []
+        for names in data:
+            if names.endswith(".yml"):
+                rdata.append([names,self.set_title(names)])
+        resp.media = rdata 
 
 class AnsibleResource(object):
     def run_command(self, command):
