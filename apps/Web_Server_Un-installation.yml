@@ -6,6 +6,9 @@
 
   tasks:
   
+  - name: Stopping webservices
+    service: name=httpd state=stopped
+  
   - name: Removing Apache packages
     yum: name=httpd state=absent
 
