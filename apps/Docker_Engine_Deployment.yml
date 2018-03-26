@@ -1,7 +1,9 @@
 ---
 - name: Install docker
   gather_facts: No
-  hosts: localhost
+  hosts: all
+  remote_user: cloud
+  become: true
 
   tasks:
     - name: Install Docker Dependencies
