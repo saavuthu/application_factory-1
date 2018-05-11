@@ -7,7 +7,7 @@
   tasks:
 
   - name: Stopping Tomcat
-    command: /opt/tomcat/apache-tomcat-8.5.29/bin/catalina.sh stop
+    command: /opt/tomcat/apache-tomcat-8.5.31/bin/catalina.sh stop
     ignore_errors: yes
 
   - name: Deleting Directory structure
