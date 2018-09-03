@@ -18,7 +18,7 @@
     shell: cd /opt/tomcat; tar -xvzf apache-tomcat-8.0.53.tar.gz; cd apache-tomcat-8.0.53/bin/; chmod 777 startup.sh shutdown.sh catalina.sh
 
   - name: War deployment
-    shell: cd /opt/tomcat/apache-tomcat-8.0.53/webapps/; wget https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/sample.war; cd /opt/tomcat/apache-tomcat-8.5.31/bin
+    shell: cd /opt/tomcat/apache-tomcat-8.0.53/webapps/; wget https://tomcat.apache.org/tomcat-8.0-doc/appdev/sample/sample.war; cd /opt/tomcat/apache-tomcat-8.0.53/bin
 
   - name: Starting Tomcat
     command: /opt/tomcat/apache-tomcat-8.0.53/bin/catalina.sh start
